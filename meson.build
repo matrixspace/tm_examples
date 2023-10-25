@@ -1,4 +1,9 @@
-project('TM kit examples', 'cpp', default_options: ['cpp_std=c++17'])
+project('TM kit examples', 'cpp')
+cpp = meson.get_compiler('cpp')
+add_project_arguments(
+  cpp.get_supported_arguments('/std:c++latest', '-std=c++2a'),
+  language: 'cpp'
+)
 
 inc = include_directories('.')
 if get_option('buildtype') == 'debug'
@@ -61,3 +66,4 @@ subdir('grpc_interop_test')
 subdir('json_rest_test')
 subdir('websocket_test')
 subdir('synthetic_facility_test')
+subdir('hdf5_test')
